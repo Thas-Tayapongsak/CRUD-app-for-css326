@@ -109,6 +109,10 @@ html, body {
     text-align: right;
 }
 
+.init-form-input input[type="text"],.init-form-input input[type="password"] {
+    width: 200px;
+}
+
 .init-logo {
     background-color: purple;
     margin: auto;
