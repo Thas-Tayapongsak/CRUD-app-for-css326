@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="signup-style.css">
+        <title>Finn & co. parcel company — sign up</title>
+    </head>
+    <body>
+        <header>
+            <div class="init-nav">
+                <div class="init-nav-logo">
+                    <figure>
+                        <img alt="Internet Explorer unofficial icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Internet_Explorer_unofficial_icon.svg/256px-Internet_Explorer_unofficial_icon.svg.png">
+                        <figcaption>Finn & co. inventory management system</figcaption>
+                    </figure>
+                </div>
+                <div class="init-nav-tab">
+                    <a>LOG IN</a>
+                    <a>SIGN UP</a>
+                    <a>LOG IN</a>
+                    <a>SIGN UP</a>
+                    <a>LOG IN</a>
+                    <a>SIGN UP</a>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="init-page">
+                <div class="init-form">
+                    <h1>SIGN UP</h1>
+                    <form action="signup.php" method="post">
+                        <div class="init-form-input">
+                            <label for="firstname">First name </label>
+                            <input type="text" name="firstname" id="firstname" placeholder="please enter your first name">
+                        </div>
+                        <div class="init-form-input">
+                            <label for="lastname">Last name </label>
+                            <input type="text" name="lastname" id="lastname" placeholder="please enter your last name">
+                        </div>
+                        <div class="init-form-input">
+                            <label for="username">Username </label>
+                            <input type="text" name="username" id="username" placeholder="please enter your username">
+                        </div>
+                        <div class="init-form-input">
+                            <label for="password">Password </label>
+                            <input type="text" name="password" id="password" placeholder="please enter your password">
+                        </div>
+                        <div class="init-form-input">
+                            <label for="branch">Branch </label>
+                            <select name="branch" id="branch">
+                                <option value="1">Branch#1</option>
+                                <!--need php to get available branches from sql database-->
+                            </select>
+                        </div>
+                        <input id="signup-submit" type="submit" value="SIGN UP"/>
+                    </form>
+                </div>
+                <div class="init-logo">
+                    <img alt="Internet Explorer unofficial icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Internet_Explorer_unofficial_icon.svg/256px-Internet_Explorer_unofficial_icon.svg.png">
+                </div>
+            </div>
+        </main>
+        <footer>
+            <address>
+                Lorem ipsum<br>
+                dolor sit amet,<br>
+                consectetur<br>
+                adipiscing elit.
+            </address>
+        </footer>
+    </body>
+</html>
