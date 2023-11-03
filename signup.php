@@ -1,3 +1,4 @@
+<?php require_once('connect.php');  ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,11 +18,8 @@
                 </div>
                 <div class="init-nav-tab">
                     <a>LOG IN</a>
-                    <a>SIGN UP</a>
-                    <a>LOG IN</a>
-                    <a>SIGN UP</a>
-                    <a>LOG IN</a>
-                    <a>SIGN UP</a>
+                    <a href="#">SIGN UP</a>
+                    <a href="setup.php">SET UP</a>
                 </div>
             </div>
         </header>
@@ -53,7 +51,7 @@
                                 <!--need php to get available branches from sql database-->
                             </select>
                         </div>
-                        <input id="signup-submit" type="submit" value="SIGN UP"/>
+                        <input id="signup-submit" type="submit" name="signup-submit" value="SIGN UP"/>
                     </form>
                 </div>
                 <div class="init-logo">
