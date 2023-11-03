@@ -114,7 +114,7 @@ html, body {
 }
 
 .init-logo {
-    background-color: purple;
+    background-color: red;
     margin: auto;
 }
 
@@ -143,7 +143,7 @@ html, body {
 }
 
 footer {
-    background-color: lime;
+    background-color: rgb(6, 21, 70);
     width: 100%;
     height: 100px;
 }
