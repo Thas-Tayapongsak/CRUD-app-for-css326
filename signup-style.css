@@ -144,6 +144,7 @@ html, body {
 
 footer {
     background-color: rgb(6, 21, 70);
+    color: whitesmoke;
     width: 100%;
     height: 100px;
 }
