@@ -84,6 +84,10 @@ html, body {
     margin: auto;
 }
 
+.init-form h1 {
+    color: #ffffff;
+}
+
 .init-form form {
     background-color: aquamarine;
     margin: auto 10px;
@@ -131,8 +135,8 @@ html, body {
 
     .init-logo {
         width: 40%;
-    } 
-    
+    }
+
     .init-form {
         width: 60%;
     }
