@@ -19,7 +19,6 @@
                 <div class="init-nav-tab">
                     <a>LOG IN</a>
                     <a href="#">SIGN UP</a>
-                    <a href="setup.php">SET UP</a>
                 </div>
             </div>
         </header>
