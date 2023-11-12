@@ -1,9 +1,10 @@
 <?php require_once('connect.php');   
 
-    if(isset($_POST['signup-submit'])){ 
-        if (!$mysqli -> query("insert into staff (uname, passwd, fname, lname, branch) values "."('".$_POST['username']."','".password_hash($_POST['password'], PASSWORD_BCRYPT)."','".$_POST['firstname']."','".$_POST['lastname']."','".$_POST['branch']."');")) {
-            echo("Unsuccessful account signup: " . $mysqli -> errno);
-        }
+    if(isset($_POST['login-submit'])){ 
+        #if (!$mysqli -> query("")) {
+            #echo("Unsuccessful account login: " . $mysqli -> errno);
+            echo "<br>Please try again or sign up for a new account.";
+        #}
     }
     
 ?>
@@ -13,7 +14,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="signup-style.css">
-        <title>Finn & co. parcel company — sign up</title>
+        <title>Finn & co. parcel company — log in</title>
     </head>
     <body>
         <header>
@@ -25,24 +26,16 @@
                     </figure>
                 </div>
                 <div class="init-nav-tab">
-                    <a href="login.php">LOG IN</a>
-                    <a href="#">SIGN UP</a>
+                    <a href="#">LOG IN</a>
+                    <a href="signup.php">SIGN UP</a>
                 </div>
             </div>
         </header>
         <main>
             <div class="init-page">
                 <div class="init-form">
-                    <h1>SIGN UP</h1>
-                    <form action="signup.php" method="post">
-                        <div class="init-form-input">
-                            <label for="firstname">First name </label>
-                            <input type="text" name="firstname" id="firstname" placeholder="please enter your first name">
-                        </div>
-                        <div class="init-form-input">
-                            <label for="lastname">Last name </label>
-                            <input type="text" name="lastname" id="lastname" placeholder="please enter your last name">
-                        </div>
+                    <h1>LOG IN</h1>
+                    <form action="login.php" method="post">
                         <div class="init-form-input">
                             <label for="username">Username </label>
                             <input type="text" name="username" id="username" placeholder="please enter your username">
@@ -51,11 +44,7 @@
                             <label for="password">Password </label>
                             <input type="password" name="password" id="password" placeholder="please enter your password">
                         </div>
-                        <div class="init-form-input">
-                            <label for="branch">Branch </label>
-                            <input type="text" name="branch" id="branch" placeholder="please enter your branch ID">
-                        </div>
-                        <input id="signup-submit" type="submit" name="signup-submit" value="SIGN UP"/>
+                        <input id="login-submit" type="submit" name="login-submit" value="LOG IN"/>
                     </form>
                 </div>
                 <div class="init-logo">
