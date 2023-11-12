@@ -1,4 +1,12 @@
-<?php require_once('connect.php');  ?>
+<?php require_once('connect.php');   
+
+    if(isset($_POST['signup-submit'])){ 
+         if (!$mysqli -> query("insert into staff (uname, passwd, fname, lname, branch) values "."('".$_POST['username']."','".password_hash($_POST['password'], PASSWORD_BCRYPT)."','".$_POST['firstname']."','".$_POST['lastname']."','".$_POST['branch']."');")) {
+            echo("Unsuccessful account signup: " . $mysqli -> errno);
+          }
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
