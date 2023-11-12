@@ -2,7 +2,6 @@
 
 create database if not exists ivms;
 use ivms;
-set @key = SHA1('upflb');
 
 -- TODO: create tables, add foreign keys, etc.
 create table if not exists staff (
