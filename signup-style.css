@@ -16,14 +16,14 @@ html, body {
 }
 
 .init-nav {
-    background-color: beige;
+    background-color: rgb(6, 21, 70);
+    color: whitesmoke;
     width: 100%;
     height: auto;
     overflow: hidden;
 }
 
 .init-nav-logo {
-    background-color: blue;
     width: auto;
     height: 0;
     margin: 10px 10px 0 10px;
@@ -47,7 +47,6 @@ html, body {
 }
 
 .init-nav-tab {
-    background-color: orange;
     width: auto;
     height: auto;
     margin: 50px 5px 5px 110px;
@@ -56,7 +55,9 @@ html, body {
 }
 
 .init-nav-tab a {
-    background-color: aquamarine;
+    background-color: orange;
+    color: rgb(6, 21, 70);
+    font-weight: 500;
     display: block;
     width: auto;
     min-width: 70px;
@@ -64,10 +65,19 @@ html, body {
     margin: 5px;
     padding: 5px;
     text-align: center;
+    border-radius: 10px;
+}
+
+.init-nav-tab a:link, a:visited {
+    text-decoration: none;
+}
+
+.init-nav-tab a:hover {
+    font-weight: bold;
 }
 
 .init-page {
-    background-color: olive;
+    background-color: rgb(6, 21, 70);
     width: 100%;
     height: auto;
     display: flex;
@@ -80,30 +90,32 @@ html, body {
 }
 
 .init-form {
-    background-color: maroon;
     margin: auto;
 }
 
 .init-form h1 {
-    color: #ffffff;
+    color: whitesmoke;
+    display: block;
+    margin: auto auto 10px 2em;
 }
 
 .init-form form {
-    background-color: aquamarine;
-    margin: auto 10px;
+    background-color: orange;
+    margin: auto 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 10px;
 }
 
-#signup-submit {
-    display: block;
+.init-form div:first-child {
+    margin-top: 20px;
 }
 
 .init-form-input {
-    background-color: fuchsia;
+    font-weight: 500;
     width: 100%;
-    margin: 10px auto;
+    margin: 0 auto 10px auto;
 }
 
 .init-form-input label {
@@ -117,8 +129,22 @@ html, body {
     width: 200px;
 }
 
+input[type="submit"] {
+    display: block;
+    background-color: rgb(6, 21, 70);
+    color: whitesmoke;
+    font-weight: 500;
+    border: solid 2px black;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+input[type="submit"]:hover {
+    font-weight: bold;
+}
+
 .init-logo {
-    background-color: red;
     margin: auto;
 }
 
@@ -150,5 +176,13 @@ footer {
     background-color: rgb(6, 21, 70);
     color: whitesmoke;
     width: 100%;
-    height: 100px;
+    height: auto;
+    min-height: 100px;
+    font-weight: 500;
+}
+
+address {
+    display: block;
+    width: 300px;
+    margin: 20px auto;
 }
