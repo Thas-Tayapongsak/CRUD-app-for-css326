@@ -45,10 +45,7 @@
                         </div>
                         <div class="init-form-input">
                             <label for="branch">Branch </label>
-                            <select name="branch" id="branch">
-                                <option value="1">Branch#1</option>
-                                <!--need php to get available branches from sql database-->
-                            </select>
+                            <input type="text" name="branch" id="branch" placeholder="please enter your branch ID">
                         </div>
                         <input id="signup-submit" type="submit" name="signup-submit" value="SIGN UP"/>
                     </form>
