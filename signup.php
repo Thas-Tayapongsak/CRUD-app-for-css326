@@ -2,7 +2,7 @@
 
     if(isset($_POST['signup-submit'])){ 
         if (!$mysqli -> query("insert into staff (uname, passwd, fname, lname, branch) values "."('".$_POST['username']."','".password_hash($_POST['password'], PASSWORD_BCRYPT)."','".$_POST['firstname']."','".$_POST['lastname']."','".$_POST['branch']."');")) {
-            echo("Unsuccessful account signup: " . $mysqli -> errno);
+            echo("Unsuccessful account signup (" . $mysqli -> errno . "): " . $mysqli -> error);
             echo "<br>Please try again with a new username or login with an existing account.";
         }
     }
