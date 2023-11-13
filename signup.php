@@ -1,10 +1,28 @@
 <?php require_once('connect.php');   
 
     if(isset($_POST['signup-submit'])){ 
-        if (!$mysqli -> query("insert into staff (uname, passwd, fname, lname, branch) values "."('".$_POST['username']."','".password_hash($_POST['password'], PASSWORD_BCRYPT)."','".$_POST['firstname']."','".$_POST['lastname']."','".$_POST['branch']."');")) {
-            echo("Unsuccessful account signup (" . $mysqli -> errno . "): " . $mysqli -> error);
-            echo "<br>Please try again with a new username or login with an existing account.";
+
+        #prepare sql statement
+        $signupq = $mysqli->prepare("insert into staff (uname, passwd, fname, lname, branch) values (?, ?, ?, ?, ?);");
+        $signupq->bind_param("sssss", $unam, $pswd, $fnam, $lnam, $brch);
+
+        $unam = $_POST['username'];
+        $pswd = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $fnam = $_POST['firstname'];
+        $lnam = $_POST['lastname'];
+        $brch = $_POST['branch'];
+
+        if ($unam != "" AND $_POST['password'] != "" AND $fnam != "" AND $lnam != "" AND $brch != "") {#prevent empty string input
+            if (!$signupq->execute()) {
+                echo("Unsuccessful account signup (" . $mysqli -> errno . "): " . $mysqli -> error);
+                echo "<br>Please try again with a new username or login with an existing account.";
+            } else {
+                echo "New account '".$unam."' has been added.";
+            }
+        } else {
+            echo "Please enter all information.";
         }
+
     }
     
 ?>

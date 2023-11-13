@@ -2,7 +2,7 @@
 
     if(isset($_POST['login-submit'])){ 
         #if (!$mysqli -> query("")) {
-            #echo("Unsuccessful account login: " . $mysqli -> errno);
+            #echo("Unsuccessful account login (" . $mysqli -> errno . "): " . $mysqli -> error);
             echo "<br>Please try again or sign up for a new account.";
         #}
     }
