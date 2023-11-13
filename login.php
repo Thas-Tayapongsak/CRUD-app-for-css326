@@ -1,10 +1,36 @@
-<?php require_once('connect.php');   
+<?php 
+    session_start();
+    require_once('connect.php');   
 
     if(isset($_POST['login-submit'])){ 
-        #if (!$mysqli -> query("")) {
-            #echo("Unsuccessful account login (" . $mysqli -> errno . "): " . $mysqli -> error);
-            echo "<br>Please try again or sign up for a new account.";
-        #}
+
+        $pswd_in = $_POST['password'];
+
+        $loginq = $mysqli->prepare("select passwd from staff where uname = ?;");
+        $loginq->bind_param("s", $unam);
+
+        $unam = $_POST['username'];
+
+        if ($unam != "" AND $_POST['password'] != "") {#prevent empty string input
+            if (!$loginq->execute()) {
+                echo("Unsuccessful account login (" . $mysqli -> errno . "): " . $mysqli -> error);
+                echo "<br>Please try again or sign up for a new account.";
+            } else {
+                $loginq->bind_result($pswd_comp);
+                while ($loginq->fetch()) {
+                    if (password_verify($pswd_in,$pswd_comp)) {
+                        $_SESSION['username'] = $unam;
+                        header('Refresh: 3; URL = home.php');
+                        echo "<p>Logged in as '".$unam."'.";
+                        echo "<br>You will be redirected. Or click <a href=\"home.php\">here</a>.</p>"; #redirect to home page
+                    } else {
+                        echo "Incorrect password for '".$unam."'."; 
+                    }
+                }
+            }
+        } else {
+            echo "Please enter username and password.";
+        }
     }
     
 ?>
