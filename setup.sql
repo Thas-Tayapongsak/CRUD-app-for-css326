@@ -1,16 +1,15 @@
--- run this sql file before using
+-- Run this sql file before using
 
-create database if not exists ivms;
-use ivms;
+CREATE DATABASE IF NOT EXISTS ivms;
+USE ivms;
 
 -- TODO: create tables, add foreign keys, etc.
-create table if not exists staff (
-    uname varchar(20) NOT NULL,
-    passwd char(60) NOT NULL,
-    fname varchar(20) NOT NULL,
-    lname varchar(20) NOT NULL,
-    branch varchar(20) NOT NULL,
-    PRIMARY KEY (uname)
+CREATE TABLE IF NOT EXISTS staff (
+    uname       VARCHAR(20)     NOT NULL    PRIMARY KEY,
+    passwd      CHAR(60)        NOT NULL,
+    fname       VARCHAR(20)     NOT NULL,
+    lname       VARCHAR(20)     NOT NULL,
+    branch      VARCHAR(20)     NOT NULL
 );
 
 -- TODO: maybe create a new sql user with some restriction on privileges.

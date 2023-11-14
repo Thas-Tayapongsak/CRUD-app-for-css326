@@ -1,5 +1,6 @@
-<?php 
-    session_start();
+<?php
+global $mysqli;
+session_start();
     require_once('connect.php');   
 
     if(isset($_POST['login-submit'])){ 
@@ -34,6 +35,7 @@
     }
     
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -80,10 +82,7 @@
         </main>
         <footer>
             <address>
-                Lorem ipsum<br>
-                dolor sit amet,<br>
-                consectetur<br>
-                adipiscing elit.
+                Lorem ipsum<br>dolor sit amet,<br>consectetur<br>adipiscing elit.
             </address>
         </footer>
     </body>
