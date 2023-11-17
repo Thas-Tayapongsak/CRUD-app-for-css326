@@ -29,6 +29,8 @@ session_start();
                     }
                 }
             }
+
+            $loginq->close();
         } else {
             echo "Please enter username and password.";
         }

@@ -96,7 +96,7 @@ html, body {
 .init-form h1 {
     color: whitesmoke;
     display: block;
-    margin: auto auto 10px 2em;
+    margin: 10px auto 10px 2em;
 }
 
 .init-form form {
@@ -116,6 +116,7 @@ html, body {
     font-weight: 500;
     width: 100%;
     margin: 0 auto 10px auto;
+    overflow: visible;
 }
 
 .init-form-input label {
@@ -127,6 +128,12 @@ html, body {
 
 .init-form-input input[type="text"],.init-form-input input[type="password"] {
     width: 200px;
+}
+
+.init-form-input p {
+    display: inline-block;
+    width: 200px;
+    margin: auto;
 }
 
 input[type="submit"] {

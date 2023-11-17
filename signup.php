@@ -19,6 +19,8 @@
             } else {
                 echo "New account '".$unam."' has been added.";
             }
+
+            $signupq->close();
         } else {
             echo "Please enter all information.";
         }
