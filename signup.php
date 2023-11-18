@@ -3,18 +3,21 @@
     if(isset($_POST['signup-submit'])){ 
 
     #prepare sql statement
-
-    #insert branch first 
-        $branchq = $mysqli->prepare("insert into branch (branch, b_address, b_email, b_tel) values (?, '', '', '0000000000')");
-        $branchq->bind_param("s", $brch);
-
+        $unam = strtolower($_POST['username']);
+        $pswd = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $fnam = strtolower($_POST['firstname']);
+        $lnam = strtolower($_POST['lastname']);
         $brch = strtolower($_POST['branch']);
 
     #prevent empty string input        
         if ($brch != "") {
+    #insert branch first 
+
+            $branchq = $mysqli->prepare("insert into branch (branch, b_address, b_email, b_tel) values (?, '', '', '0000000000')");
+            $branchq->bind_param("s", $brch);
 
             if (!$branchq->execute()) {
-                echo("Unsuccessful account signup (" . $mysqli -> errno . "): " . $mysqli -> error);
+                echo("Branch already exists.<br>");
             } else {
                 echo "New branch '".$brch."' has been added.<br>";
             }
@@ -24,11 +27,6 @@
     #insert staff
             $signupq = $mysqli->prepare("insert into staff (uname, passwd, fname, lname, branch) values (?, ?, ?, ?, ?);");
             $signupq->bind_param("sssss", $unam, $pswd, $fnam, $lnam, $brch);
-
-            $unam = strtolower($_POST['username']);
-            $pswd = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            $fnam = strtolower($_POST['firstname']);
-            $lnam = strtolower($_POST['lastname']);
 
     #prevent empty string input
             if ($unam != "" AND $_POST['password'] != "" AND $fnam != "" AND $lnam != "") {
@@ -51,6 +49,7 @@
         }
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

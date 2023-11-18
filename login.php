@@ -6,13 +6,14 @@ session_start();
     if(isset($_POST['login-submit'])){ 
 
         $pswd_in = $_POST['password'];
+        $unam = $_POST['username'];
 
         $loginq = $mysqli->prepare("select passwd from staff where uname = ?;");
         $loginq->bind_param("s", $unam);
 
-        $unam = $_POST['username'];
-
-        if ($unam != "" AND $_POST['password'] != "") {#prevent empty string input
+    #prevent empty string input
+    #check password
+        if ($unam != "" AND $_POST['password'] != "") {
             if (!$loginq->execute()) {
                 echo("Unsuccessful account login (" . $mysqli -> errno . "): " . $mysqli -> error);
                 echo "<br>Please try again or sign up for a new account.";
@@ -31,11 +32,11 @@ session_start();
             }
 
             $loginq->close();
+
         } else {
             echo "Please enter username and password.";
         }
     }
-    
 ?>
 
 <!DOCTYPE html>
