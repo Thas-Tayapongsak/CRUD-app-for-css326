@@ -7,6 +7,7 @@
         $pswd = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $fnam = strtolower($_POST['firstname']);
         $lnam = strtolower($_POST['lastname']);
+        $dob  = $_POST['dateofbirth'];
         $brch = strtolower($_POST['branch']);
 
     #prevent empty string input        
@@ -25,8 +26,8 @@
             $branchq->close();
 
     #insert staff
-            $signupq = $mysqli->prepare("insert into staff (uname, passwd, fname, lname, branch) values (?, ?, ?, ?, ?);");
-            $signupq->bind_param("sssss", $unam, $pswd, $fnam, $lnam, $brch);
+            $signupq = $mysqli->prepare("insert into staff (uname, passwd, fname, lname, dateofbirth, branch) values (?, ?, ?, ?, ?, ?);");
+            $signupq->bind_param("ssssss", $unam, $pswd, $fnam, $lnam, $dob, $brch);
 
     #prevent empty string input
             if ($unam != "" AND $_POST['password'] != "" AND $fnam != "" AND $lnam != "") {
@@ -79,23 +80,27 @@
                     <h1>SIGN UP</h1>
                     <form action="signup.php" method="post">
                         <div class="init-form-input">
-                            <label for="firstname">First name </label>
+                            <label for="firstname">First name :</label>
                             <input type="text" name="firstname" id="firstname" placeholder="please enter your first name">
                         </div>
                         <div class="init-form-input">
-                            <label for="lastname">Last name </label>
+                            <label for="lastname">Last name :</label>
                             <input type="text" name="lastname" id="lastname" placeholder="please enter your last name">
                         </div>
                         <div class="init-form-input">
-                            <label for="username">Username </label>
+                            <label for="dateofbirth">Date of birth :</label>
+                            <input type="date" name="dateofbirth" id="dateofbirth">
+                        </div>
+                        <div class="init-form-input">
+                            <label for="username">Username :</label>
                             <input type="text" name="username" id="username" placeholder="please enter your username">
                         </div>
                         <div class="init-form-input">
-                            <label for="password">Password </label>
+                            <label for="password">Password :</label>
                             <input type="password" name="password" id="password" placeholder="please enter your password">
                         </div>
                         <div class="init-form-input">
-                            <label for="branch">Branch </label>
+                            <label for="branch">Branch :</label>
                             <input type="text" name="branch" id="branch" placeholder="please enter your branch ID">
                         </div>
                         <input id="signup-submit" type="submit" name="signup-submit" value="SIGN UP"/>

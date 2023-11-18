@@ -3,7 +3,7 @@
     require_once('connect.php');   
 
     #query all personal info
-    $profq = $mysqli->prepare("select fname, lname, branch from staff where uname = ?;");
+    $profq = $mysqli->prepare("select fname, lname, dateofbirth, branch from staff where uname = ?;");
     $profq->bind_param("s", $unam);
     $unam = $_SESSION['username'];
 
@@ -56,6 +56,10 @@
                             <div class="init-form-input">
                                 <label for="lastname">Last name :</label>
                                 <input type="text" name="lastname" id="lastname" placeholder="<?php echo $row['lname'];?>">
+                            </div>
+                            <div class="init-form-input">
+                                <label for="dateofbirth">Last name :</label>
+                                <input type="date" name="dateofbirth" id="dateofbirth" value="<?php echo $row['dateofbirth'];?>">
                             </div>
                             <div class="init-form-input">
                                 <label for="username">Username :</label>

@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS staff (
     passwd      CHAR(60)        NOT NULL,
     fname       VARCHAR(20)     NOT NULL,
     lname       VARCHAR(20)     NOT NULL,
+    dateofbirth DATE            NOT NULL,
     branch      VARCHAR(20)     NOT NULL,
     PRIMARY KEY (uname),
     FOREIGN KEY (branch) REFERENCES branch (branch)
