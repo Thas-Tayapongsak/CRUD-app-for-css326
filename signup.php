@@ -2,31 +2,54 @@
 
     if(isset($_POST['signup-submit'])){ 
 
-        #prepare sql statement
-        $signupq = $mysqli->prepare("insert into staff (uname, passwd, fname, lname, branch) values (?, ?, ?, ?, ?);");
-        $signupq->bind_param("sssss", $unam, $pswd, $fnam, $lnam, $brch);
+    #prepare sql statement
 
-        $unam = $_POST['username'];
-        $pswd = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $fnam = $_POST['firstname'];
-        $lnam = $_POST['lastname'];
-        $brch = $_POST['branch'];
+    #insert branch first 
+        $branchq = $mysqli->prepare("insert into branch (branch, b_address, b_email, b_tel) values (?, '', '', '0000000000')");
+        $branchq->bind_param("s", $brch);
 
-        if ($unam != "" AND $_POST['password'] != "" AND $fnam != "" AND $lnam != "" AND $brch != "") {#prevent empty string input
-            if (!$signupq->execute()) {
+        $brch = strtolower($_POST['branch']);
+
+    #prevent empty string input        
+        if ($brch != "") {
+
+            if (!$branchq->execute()) {
                 echo("Unsuccessful account signup (" . $mysqli -> errno . "): " . $mysqli -> error);
-                echo "<br>Please try again with a new username or login with an existing account.";
             } else {
-                echo "New account '".$unam."' has been added.";
+                echo "New branch '".$brch."' has been added.<br>";
             }
 
-            $signupq->close();
-        } else {
-            echo "Please enter all information.";
-        }
+            $branchq->close();
 
+    #insert staff
+            $signupq = $mysqli->prepare("insert into staff (uname, passwd, fname, lname, branch) values (?, ?, ?, ?, ?);");
+            $signupq->bind_param("sssss", $unam, $pswd, $fnam, $lnam, $brch);
+
+            $unam = strtolower($_POST['username']);
+            $pswd = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $fnam = strtolower($_POST['firstname']);
+            $lnam = strtolower($_POST['lastname']);
+
+    #prevent empty string input
+            if ($unam != "" AND $_POST['password'] != "" AND $fnam != "" AND $lnam != "") {
+                
+                if (!$signupq->execute()) {
+                    echo("Unsuccessful account signup (" . $mysqli -> errno . "): " . $mysqli -> error);
+                    echo "<br>Please try again with a new username or login with an existing account.";
+                } else {
+                    echo "New account '".$unam."' has been added.";
+                }
+
+                $signupq->close();
+
+            } else {
+                echo "Please enter all information.";
+            }
+
+        } else {
+            echo "Please enter your branch.";
+        }
     }
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">

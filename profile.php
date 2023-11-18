@@ -71,7 +71,7 @@
                             </div>
                             <div class="init-form-input">
                                 <label for="confpass">Confirm change :</label>
-                                <input type="text" name="confpass" id="confpass" placeholder="Enter your password">
+                                <input type="password" name="confpass" id="confpass" placeholder="Enter your password">
                             </div>
                             <input id="prof-submit" type="submit" name="prof-submit" value="UPDATE"/>
                         </form>
@@ -84,7 +84,7 @@
                         <form action="resign.php" method="post">
                             <div class="init-form-input">
                                 <label for="confpass">Confirm change :</label>
-                                <input type="text" name="confpass" id="confpass" placeholder="Enter your password">
+                                <input type="password" name="confpass" id="confpass" placeholder="Enter your password">
                             </div>
                             <input id="resign-submit" type="submit" name="resign-submit" value="RESIGN"/>
                         </form>
