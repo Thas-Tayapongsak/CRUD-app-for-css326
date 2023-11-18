@@ -21,6 +21,7 @@
                     <!-- link to other pages goes here vvv -->
                     <a href="logout.php">LOG OUT</a>
                     <a href="profile.php">PROFILE</a>
+                    <a href="branch.php">BRANCH</a>
                 </div>
             </div>
         </header>

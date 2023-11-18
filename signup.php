@@ -81,11 +81,11 @@
                     <form action="signup.php" method="post">
                         <div class="init-form-input">
                             <label for="firstname">First name :</label>
-                            <input type="text" name="firstname" id="firstname" placeholder="please enter your first name">
+                            <input type="text" name="firstname" id="firstname" placeholder="please enter your first name" required>
                         </div>
                         <div class="init-form-input">
                             <label for="lastname">Last name :</label>
-                            <input type="text" name="lastname" id="lastname" placeholder="please enter your last name">
+                            <input type="text" name="lastname" id="lastname" placeholder="please enter your last name" required>
                         </div>
                         <div class="init-form-input">
                             <label for="dateofbirth">Date of birth :</label>
@@ -93,15 +93,15 @@
                         </div>
                         <div class="init-form-input">
                             <label for="username">Username :</label>
-                            <input type="text" name="username" id="username" placeholder="please enter your username">
+                            <input type="text" name="username" id="username" placeholder="please enter your username" required>
                         </div>
                         <div class="init-form-input">
                             <label for="password">Password :</label>
-                            <input type="password" name="password" id="password" placeholder="please enter your password">
+                            <input type="password" name="password" id="password" placeholder="please enter your password" required>
                         </div>
                         <div class="init-form-input">
                             <label for="branch">Branch :</label>
-                            <input type="text" name="branch" id="branch" placeholder="please enter your branch ID">
+                            <input type="text" name="branch" id="branch" placeholder="please enter your branch ID" required>
                         </div>
                         <input id="signup-submit" type="submit" name="signup-submit" value="SIGN UP"/>
                     </form>

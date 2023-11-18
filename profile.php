@@ -45,10 +45,10 @@
                 <div class="init-form">
                     <div class="init-form">
                         <?php
-                            echo "<h1>UPDATE ".$_SESSION['username']."'s PROFILE</h1>"; 
+                            echo "<h1>UPDATE PROFILE</h1>"; 
                             #update staff info
                         ?>
-                        <form action="profileupdate.php" method="post">
+                        <form action="update.php" method="post">
                             <div class="init-form-input">
                                 <label for="firstname">First name :</label>
                                 <input type="text" name="firstname" id="firstname" placeholder="<?php echo $row['fname'];?>">
@@ -75,7 +75,7 @@
                             </div>
                             <div class="init-form-input">
                                 <label for="confpass">Confirm change :</label>
-                                <input type="password" name="confpass" id="confpass" placeholder="Enter your password">
+                                <input type="password" name="confpass" id="confpass" placeholder="Enter your password" required>
                             </div>
                             <input id="prof-submit" type="submit" name="prof-submit" value="UPDATE"/>
                         </form>
@@ -88,7 +88,7 @@
                         <form action="resign.php" method="post">
                             <div class="init-form-input">
                                 <label for="confpass">Confirm change :</label>
-                                <input type="password" name="confpass" id="confpass" placeholder="Enter your password">
+                                <input type="password" name="confpass" id="confpass" placeholder="Enter your password" required>
                             </div>
                             <input id="resign-submit" type="submit" name="resign-submit" value="RESIGN"/>
                         </form>
