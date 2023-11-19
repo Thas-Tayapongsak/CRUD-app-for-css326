@@ -25,3 +25,9 @@ CREATE TABLE IF NOT EXISTS staff (
     PRIMARY KEY (uname),
     FOREIGN KEY (branch) REFERENCES branch (branch)
 );
+
+-- create inventory
+
+-- create warehouse
+
+-- create shipment
