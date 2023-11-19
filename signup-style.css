@@ -147,7 +147,7 @@ html, body {
     text-align: right;
 }
 
-.init-form-input input[type="text"],.init-form-input input[type="password"] {
+.init-form-input input[type="text"],.init-form-input input[type="password"],.init-form-input input[type="email"] {
     width: 200px;
 }
 

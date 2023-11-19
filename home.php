@@ -22,7 +22,7 @@
                     <a href="logout.php">LOG OUT</a>
                     <a href="profile.php">PROFILE</a>
                     <a href="branch.php">BRANCH</a>
-                    <a href="#">SHIPMENT</a>
+                    <a href="shipment.php">SHIPMENT</a>
                     <a href="#">INVENTORY</a>
                 </div>
             </div>
