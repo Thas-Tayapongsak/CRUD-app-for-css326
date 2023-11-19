@@ -3,7 +3,7 @@
     require_once('connect.php');   
 
     #query all personal info
-    $profq = $mysqli->prepare("select fname, lname, dateofbirth, branch from staff where uname = ?;");
+    $profq = $mysqli->prepare("select fname, lname, dateofbirth from staff where uname = ?;");
     $profq->bind_param("s", $unam);
     $unam = $_SESSION['username'];
 
@@ -62,7 +62,7 @@
                         </div>
                         <div class="init-form-input">
                             <label for="username">Username :</label>
-                            <?php echo "<p>".$_SESSION['username']."</p>"?>
+                            <?php echo "<p>".$unam."</p>"?>
                         </div>
                         <div class="init-form-input">
                             <label for="password">Password :</label>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="init-form-input">
                             <label for="branch">Branch :</label>
-                            <?php echo "<p>".$row['branch']."</p>";?>
+                            <?php echo "<p>".$_SESSION['branch']."</p>";?>
                         </div>
                         <div class="init-form-input">
                             <label for="confpass">Confirm change :</label>

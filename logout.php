@@ -1,6 +1,7 @@
 <?php 
    session_start();
    unset($_SESSION["username"]);
+   unset($_SESSION["branch"]);
    header('Refresh: 3; URL = login.php');
    echo "<p>You will be redirected. Or click <a href=\"login.php\">here</a>.</p>";
 ?>
