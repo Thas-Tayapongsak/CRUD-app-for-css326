@@ -55,9 +55,10 @@
 
                         $invq->close();
 
+                    #insert warehouse
+
                     #insert into shipment 
-
-
+                        
                     } else {
                         echo "Incorrect password for '".$unam."'."; 
                     }
@@ -121,6 +122,8 @@
                             <label for="price">Price :</label>
                             <input type="text" name="price" id="price" placeholder="price" required>
                         </div>
+                        <!-- ADD WAREHOUSE -->
+                        <!-- ADD SHIPMENT METHOD -->
                         <div class="init-form-input">
                             <label for="confpass">Confirm change :</label>
                             <input type="password" name="confpass" id="confpass" placeholder="Enter your password" required>
