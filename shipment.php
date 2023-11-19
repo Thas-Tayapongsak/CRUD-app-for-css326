@@ -123,7 +123,11 @@
                             <input type="text" name="price" id="price" placeholder="price" required>
                         </div>
                         <!-- ADD WAREHOUSE -->
-                        <!-- ADD SHIPMENT METHOD -->
+                        <div class="init-form-input">
+                            <label for="warehouse">warehouse :</label>
+                            <input type="text" name="warehouse" id="warehouse" placeholder="warehouse name" required>
+                        </div>
+                        <!-- ADD SHIPMENT METHOD select input type-->
                         <div class="init-form-input">
                             <label for="confpass">Confirm change :</label>
                             <input type="password" name="confpass" id="confpass" placeholder="Enter your password" required>
