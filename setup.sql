@@ -23,11 +23,34 @@ CREATE TABLE IF NOT EXISTS staff (
     dateofbirth DATE            NOT NULL,
     branch      VARCHAR(20)     NOT NULL,
     PRIMARY KEY (uname),
-    FOREIGN KEY (branch) REFERENCES branch (branch)
+    FOREIGN KEY (branch)        REFERENCES branch (branch)
 );
 
 -- create inventory
 
+CREATE TABLE IF NOT EXISTS inventory (
+    lot_id      INT             NOT NULL AUTO_INCREMENT,
+    i_name      VARCHAR(20)     NOT NULL,
+    i_type      VARCHAR(20)     NOT NULL,
+    quantity    INT             NOT NULL,
+    price       INT             NOT NULL,
+    branch      VARCHAR(20)     NOT NULL,
+    PRIMARY KEY (lot_id),
+    FOREIGN KEY (branch)        REFERENCES branch (branch)
+);
+
 -- create warehouse
 
 -- create shipment
+
+CREATE TABLE IF NOT EXISTS shipment (
+    ship_id     INT             NOT NULL AUTO_INCREMENT,
+    uname       VARCHAR(20)     NOT NULL,
+    branch      VARCHAR(20)     NOT NULL,
+    lot_id      INT             NOT NULL,
+    ship_mthd   VARCHAR(20)     NOT NULL,
+    PRIMARY KEY (ship_id),
+    FOREIGN KEY (uname)         REFERENCES staff (uname),
+    FOREIGN KEY (lot_id)        REFERENCES inventory (lot_id),
+    FOREIGN KEY (branch)        REFERENCES branch (branch)
+);
