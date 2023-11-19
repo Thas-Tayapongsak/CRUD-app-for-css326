@@ -62,3 +62,10 @@ CREATE TABLE IF NOT EXISTS shipment (
     FOREIGN KEY (branch)        REFERENCES branch (branch),
     FOREIGN KEY (ware_id)       REFERENCES warehouse (ware_id)
 );
+
+-- insert warehouses
+
+INSERT INTO warehouse (w_address) VALUES ("Rangsit"), ("Bangkadi"), ("Hatyai"), ("Tokyo");
+
+CREATE TRIGGER shipment_delete BEFORE DELETE ON shipment
+FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'table shipment does not support deletion';

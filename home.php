@@ -1,4 +1,20 @@
 <?php session_start();
+    require_once('connect.php');   
+    #query all branch info
+    $branchq = $mysqli->prepare("select branch from staff where uname = ?;");
+    $branchq->bind_param("s", $unam);
+    $unam = $_SESSION['username'];
+
+    if (!$branchq->execute()) {
+        echo("Error retrieving branch information (" . $mysqli -> errno . "): " . $mysqli -> error);
+    } else {
+        $branchq->bind_result($brch);
+            while ($branchq->fetch()) {
+                $_SESSION['branch'] = $brch;
+            }
+    }
+
+    $branchq->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">

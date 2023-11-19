@@ -56,7 +56,7 @@
                         if (!$updateq->execute()) {
                             header('Refresh: 3; URL = branch.php');
                             echo("Unsuccessful change (" . $mysqli -> errno . "): " . $mysqli -> error);
-                            echo "<br>Please try again or sign up for a new account.";
+                            echo "<br>Please try again.";
                             echo "<br>You will be redirected. Or click <a href=\"branch.php\">here</a>.</p>";
                         } else {
                             header('Refresh: 3; URL = branch.php');
@@ -66,6 +66,43 @@
 
                         $updateq->close();
 
+                    } else if (isset($_POST['inv-submit'])) { 
+                        #insert into inventory
+                        $iname = $_POST['i_name'];
+                        $itype = $_POST['i_type'];
+                        $quant = intval($_POST['quantity']);
+                        $price = intval($_POST['price']);
+                        $brch = $_SESSION['branch'];
+
+                        $invq = $mysqli->prepare("insert into inventory (i_name, i_type, quantity, price, branch) values (?,?,?,?,?);");
+                        $invq->bind_param("ssiis", $iname, $itype, $quant, $price, $brch);
+                        if (!$invq->execute()) {
+                            header('Refresh: 3; URL = shipment.php');
+                            echo("Error adding into inventory (" . $mysqli -> errno . "): " . $mysqli -> error);
+                            echo "<br>Please try again.";
+                            echo "<br>You will be redirected. Or click <a href=\"shipment.php\">here</a>.</p>";
+                        } else {
+                            echo "Successfully added to inventory";
+                            #insert into shipment
+                            $lid = $invq->insert_id;
+                            $invq->close();
+                            $wid = intval($_POST['warehouse']);
+                            $mthd = $_POST['method'];
+
+                            $shipq = $mysqli->prepare("insert into shipment (uname, branch, lot_id, ware_id, ship_mthd) values (?,?,?,?,?);");
+                            $shipq->bind_param("ssiis", $unam, $brch, $lid, $wid, $mthd);
+
+                            if (!$shipq->execute()) {
+                                header('Refresh: 3; URL = shipment.php');
+                                echo("Error recording shipment (" . $mysqli -> errno . "): " . $mysqli -> error);
+                                echo "<br>Please try again.";
+                                echo "<br>You will be redirected. Or click <a href=\"shipment.php\">here</a>.</p>";
+                            } else {
+                                header('Refresh: 3; URL = shipment.php');
+                                echo "Successfully recorded shipment";
+                                echo "<br>You will be redirected. Or click <a href=\"shipment.php\">here</a>.</p>"; #refresh
+                            }
+                        }    
                     } else {
                         header('Refresh: 3; URL = home.php');
                         echo "Enter all the information";

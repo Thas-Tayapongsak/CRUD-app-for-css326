@@ -16,60 +16,6 @@
     }
 
     $branchq->close();
-
-    #insert into shipment and inventory
-    if(isset($_POST['inv-submit'])){ 
-
-        $pswd_in = $_POST['confpass'];
-
-        $confq = $mysqli->prepare("select passwd from staff where uname = ?;");
-        $confq->bind_param("s", $unam);
-
-    #prevent empty string input
-    #check password
-        if ($_POST['confpass'] != "") {
-            if (!$confq->execute()) {
-                echo("Unsuccessful shipment request (" . $mysqli -> errno . "): " . $mysqli -> error);
-            } else {
-                $confq->bind_result($pswd_comp);
-                while ($confq->fetch()) {
-                    if (password_verify($pswd_in,$pswd_comp)) {
-                        $confq->close();
-                        
-                    #insert into inventory
-                        $iname = $_POST['i_name'];
-                        $itype = $_POST['i_type'];
-                        $quant = intval($_POST['quantity']);
-                        $price = intval($_POST['price']);
-
-                        $invq = $mysqli->prepare("insert into inventory (i_name, i_type, quantity, price, branch) values (?,?,?,?,?);");
-                        $invq->bind_param("ssiis", $iname, $itype, $quant, $price, $brch);
-
-                        if (!$invq->execute()) {
-                            echo("Error adding into inventory (" . $mysqli -> errno . "): " . $mysqli -> error);
-                        } else {
-                            header('Refresh: 3;');
-                            echo "Successfully added into inventory";
-                            echo "<br>You will be redirected. Or click <a href=\"shipment.php\">here</a>.</p>"; #refresh
-                        }
-
-                        $invq->close();
-
-                    #insert warehouse
-
-                    #insert into shipment 
-                        
-                    } else {
-                        echo "Incorrect password for '".$unam."'."; 
-                    }
-                }
-            }
-
-        } else {
-            echo "Please enter password.";
-        }
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +47,7 @@
                 <div class="init-form">
                     <!--enter lot information in form-->                    
                     <h1>SHIPMENT</h1> 
-                    <form action="shipment.php" method="post">
+                    <form action="update.php" method="post">
                         <div class="init-form-input">
                             <label for="branch">Branch :</label>
                             <?php echo "<p>".$brch."</p>";?>
@@ -124,10 +70,36 @@
                         </div>
                         <!-- ADD WAREHOUSE -->
                         <div class="init-form-input">
-                            <label for="warehouse">warehouse :</label>
-                            <input type="text" name="warehouse" id="warehouse" placeholder="warehouse name" required>
+                            <?php
+                                #get ware_id and warehouse address
+                                $wareq = $mysqli->prepare("select ware_id, w_address from warehouse;");
+
+                                if (!$wareq->execute()) {
+                                    echo("Error retrieving branch information (" . $mysqli -> errno . "): " . $mysqli -> error);
+                                } else {
+                                    $wres = $wareq->get_result();
+                                }
+
+                                $wareq->close();
+                            ?>
+                            <label for="warehouse">Warehouse :</label>
+                            <select name="warehouse" id="warehouse">
+                                <?php
+                                    while ($wrow = $wres->fetch_assoc()) {
+                                        echo "<option value='".$wrow['ware_id']."'>".$wrow['w_address']."</option>";
+                                    }
+                                ?>
+                            </select>
                         </div>
                         <!-- ADD SHIPMENT METHOD select input type-->
+                        <div class="init-form-input">
+                            <label for="method">Shipment method :</label>
+                            <select name="method" id="method">
+                                <option value="scheduled">Scheduled</option>
+                                <option value="express">Express</option>
+                                <option value="request">Request</option>
+                            </select>
+                        </div>
                         <div class="init-form-input">
                             <label for="confpass">Confirm change :</label>
                             <input type="password" name="confpass" id="confpass" placeholder="Enter your password" required>
