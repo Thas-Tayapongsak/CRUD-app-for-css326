@@ -103,6 +103,26 @@
                                 echo "<br>You will be redirected. Or click <a href=\"shipment.php\">here</a>.</p>"; #refresh
                             }
                         }    
+                    } else if (isset($_POST['lot-submit'])) {
+                        #update lot price
+                        $lid = intval($_POST['lot']);
+                        $price = intval($_POST['price']);
+                        
+                        $priceq = $mysqli->prepare("update inventory set price = ? where lot_id = ?;");
+                        $priceq->bind_param("ii", $price, $lid);
+
+                        if (!$priceq->execute()) {
+                            header('Refresh: 3; URL = inventory.php');
+                            echo("Error changing lot price (" . $mysqli -> errno . "): " . $mysqli -> error);
+                            echo "<br>Please try again.";
+                            echo "<br>You will be redirected. Or click <a href=\"inventory.php\">here</a>.</p>";
+                        } else {
+                            header('Refresh: 3; URL = inventory.php');
+                            echo "Lot price successfully changed";
+                            echo "<br>You will be redirected. Or click <a href=\"inventory.php\">here</a>.</p>"; #refresh
+                        }
+
+                        $priceq->close();
                     } else {
                         header('Refresh: 3; URL = home.php');
                         echo "Enter all the information";

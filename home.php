@@ -39,7 +39,7 @@
                     <a href="profile.php">PROFILE</a>
                     <a href="branch.php">BRANCH</a>
                     <a href="shipment.php">SHIPMENT</a>
-                    <a href="#">INVENTORY</a>
+                    <a href="inventory.php">INVENTORY</a>
                 </div>
             </div>
         </header>
