@@ -8,46 +8,36 @@
         $fnam = strtolower($_POST['firstname']);
         $lnam = strtolower($_POST['lastname']);
         $dob  = $_POST['dateofbirth'];
+        $mflag = $_POST['usertype'];
         $brch = strtolower($_POST['branch']);
 
-    #prevent empty string input        
-        if ($brch != "") {
     #insert branch first 
 
-            $branchq = $mysqli->prepare("insert into branch (branch, b_address, b_email, b_tel) values (?, '', '', '0000000000')");
-            $branchq->bind_param("s", $brch);
+        $branchq = $mysqli->prepare("insert into branch (branch, b_address, b_email, b_tel) values (?, '', '', '0000000000')");
+        $branchq->bind_param("s", $brch);
 
-            if (!$branchq->execute()) {
-                echo("Branch already exists.<br>");
-            } else {
-                echo "New branch '".$brch."' has been added.<br>";
-            }
-
-            $branchq->close();
-
-    #insert staff
-            $signupq = $mysqli->prepare("insert into staff (uname, passwd, fname, lname, dateofbirth, branch) values (?, ?, ?, ?, ?, ?);");
-            $signupq->bind_param("ssssss", $unam, $pswd, $fnam, $lnam, $dob, $brch);
-
-    #prevent empty string input
-            if ($unam != "" AND $_POST['password'] != "" AND $fnam != "" AND $lnam != "") {
-                
-                if (!$signupq->execute()) {
-                    echo("Unsuccessful account signup (" . $mysqli -> errno . "): " . $mysqli -> error);
-                    echo "<br>Please try again with a new username or login with an existing account.";
-                } else {
-                    echo "New account '".$unam."' has been added.";
-                }
-
-                $signupq->close();
-
-            } else {
-                echo "Please enter all information.";
-            }
-
+        if (!$branchq->execute()) {
+            echo("Branch already exists.<br>");
         } else {
-            echo "Please enter your branch.";
+            echo "New branch '".$brch."' has been added.<br>";
         }
+
+        $branchq->close();
+
+#insert staff
+        $signupq = $mysqli->prepare("insert into staff (uname, passwd, fname, lname, dateofbirth, branch, managerflag) values (?, ?, ?, ?, ?, ?, ?);");
+        $signupq->bind_param("sssssss", $unam, $pswd, $fnam, $lnam, $dob, $brch, $mflag);
+
+#prevent empty string input
+
+        if (!$signupq->execute()) {
+            echo("Unsuccessful account signup (" . $mysqli -> errno . "): " . $mysqli -> error);
+            echo "<br>Please try again with a new username or login with an existing account.";
+        } else {
+            echo "New account '".$unam."' has been added.";
+        }
+
+        $signupq->close();
     }
 ?>
 
@@ -103,7 +93,12 @@
                             <label for="branch">Branch :</label>
                             <input type="text" name="branch" id="branch" placeholder="please enter your branch ID" required>
                         </div>
-                        <!-- ADD HR CHECKBOX -->
+                        <div class="init-form-input">
+                            <label for="staff"> Staff</label>
+                            <input type="radio" id="staff" name="usertype" value="0" checked>
+                            <label for="manager"> Manager</label>
+                            <input type="radio" id="manager" name="usertype" value="1">
+                        </div>
                         <input id="signup-submit" type="submit" name="signup-submit" value="SIGN UP"/>
                     </form>
                 </div>

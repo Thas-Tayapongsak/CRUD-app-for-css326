@@ -92,7 +92,7 @@
                             <label for="confpass">Confirm change :</label>
                             <input type="password" name="confpass" id="confpass" placeholder="Enter your password" required>
                         </div>
-                        <input id="inv-submit" type="submit" name="inv-submit" value="UPDATE"/>
+                        <input id="inv-submit" type="submit" name="inv-submit" value="SEND"/>
                     </form>
 
                     <h1>INVENTORY</h1>

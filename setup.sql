@@ -15,7 +15,6 @@ CREATE TABLE IF NOT EXISTS branch (
     PRIMARY KEY (branch)
 );
 
--- add HR attribute
 CREATE TABLE IF NOT EXISTS staff (
     uname       VARCHAR(20)     NOT NULL,
     passwd      CHAR(60)        NOT NULL,
@@ -23,6 +22,7 @@ CREATE TABLE IF NOT EXISTS staff (
     lname       VARCHAR(20)     NOT NULL,
     dateofbirth DATE            NOT NULL,
     branch      VARCHAR(20)     NOT NULL,
+    managerflag CHAR(1)         NOT NULL,             
     PRIMARY KEY (uname),
     FOREIGN KEY (branch)        REFERENCES branch (branch)
 );
@@ -70,3 +70,19 @@ INSERT INTO warehouse (w_address) VALUES ("Rangsit"), ("Bangkadi"), ("Hatyai"), 
 
 CREATE TRIGGER shipment_delete BEFORE DELETE ON shipment
 FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'table shipment does not support deletion';
+
+CREATE USER 'staff'@'localhost' IDENTIFIED BY 'staff';
+CREATE USER 'manager'@'localhost' IDENTIFIED BY 'manager';
+
+GRANT ALL PRIVILEGES ON ivms.* to 'manager'@'localhost';
+FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON ivms.staff to 'staff'@'localhost';
+FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON ivms.branch to 'staff'@'localhost';
+FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON ivms.inventory to 'staff'@'localhost';
+FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON ivms.warehouse to 'staff'@'localhost';
+FLUSH PRIVILEGES;
+GRANT SELECT, INSERT ON ivms.shipment to 'staff'@'localhost';
+FLUSH PRIVILEGES;

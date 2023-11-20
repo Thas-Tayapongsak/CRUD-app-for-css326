@@ -1,7 +1,7 @@
 <?php 
     session_start();
     require_once('connect.php');   
-    #update personal info
+    #update info
     $pswd_in = $_POST['confpass'];
 
     $confq = $mysqli->prepare("select passwd from staff where uname = ?;");
@@ -16,7 +16,7 @@
             header('Refresh: 3; URL = profile.php');
             echo("Wrong password (" . $mysqli -> errno . "): " . $mysqli -> error);
             echo "<br>Please try again or sign up for a new account.";
-            echo "<br>You will be redirected. Or click <a href=\"profile.php\">here</a>.</p>";
+            echo "<br>You will be redirected. Or click <a href=\"home.php\">here</a>.</p>";
         } else {
             $confq->bind_result($pswd_comp);
             while ($confq->fetch()) {
