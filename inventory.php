@@ -55,9 +55,9 @@
                             <label for="lot">Lot :</label>
                             <select name="lot" id="lot">
                                 <?php
-                                    while ($row = $res->fetch_assoc()) {
+                                    foreach ($res as $row) {
                                         echo "<option value='".$row['lot_id']."'>".$row['i_name']." (".$row['lot_id'].")</option>";
-                                    #while loop continues in the inventory table
+                                    }
                                 ?>
                             </select>
                         </div>
@@ -84,7 +84,7 @@
                                 <td>Price</td>
                             </tr>
                             <?php
-                                #continue the while loop from edit price form
+                                foreach ($res as $row) {
                                     echo "<tr>";
                                     echo "<td>".$row['lot_id']."</td>";
                                     echo "<td>".$row['i_name']."</td>";
