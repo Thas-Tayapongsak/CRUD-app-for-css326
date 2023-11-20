@@ -103,6 +103,7 @@
                             <label for="branch">Branch :</label>
                             <input type="text" name="branch" id="branch" placeholder="please enter your branch ID" required>
                         </div>
+                        <!-- ADD HR CHECKBOX -->
                         <input id="signup-submit" type="submit" name="signup-submit" value="SIGN UP"/>
                     </form>
                 </div>

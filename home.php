@@ -40,6 +40,7 @@
                     <a href="branch.php">BRANCH</a>
                     <a href="shipment.php">SHIPMENT</a>
                     <a href="inventory.php">INVENTORY</a>
+                    <a href="admin.php">ADMIN</a>
                 </div>
             </div>
         </header>

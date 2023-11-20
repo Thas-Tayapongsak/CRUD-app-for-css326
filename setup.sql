@@ -5,7 +5,7 @@
 CREATE DATABASE IF NOT EXISTS ivms;
 USE ivms;
 
--- TODO: create tables, add foreign keys, etc.
+-- define user staff and hr, 
 
 CREATE TABLE IF NOT EXISTS branch (
     branch      VARCHAR(20)     NOT NULL,
@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS branch (
     PRIMARY KEY (branch)
 );
 
+-- add HR attribute
 CREATE TABLE IF NOT EXISTS staff (
     uname       VARCHAR(20)     NOT NULL,
     passwd      CHAR(60)        NOT NULL,
@@ -57,7 +58,7 @@ CREATE TABLE IF NOT EXISTS shipment (
     ware_id     INT             NOT NULL,
     ship_mthd   VARCHAR(20)     NOT NULL,
     PRIMARY KEY (ship_id),
-    FOREIGN KEY (uname)         REFERENCES staff (uname),
+    FOREIGN KEY (uname)         REFERENCES staff (uname)     ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (lot_id)        REFERENCES inventory (lot_id),
     FOREIGN KEY (branch)        REFERENCES branch (branch),
     FOREIGN KEY (ware_id)       REFERENCES warehouse (ware_id)
