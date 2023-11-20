@@ -11,8 +11,7 @@
         $mflag = $_POST['usertype'];
         $brch = strtolower($_POST['branch']);
 
-    #insert branch first 
-
+    #insert branch first   
         $branchq = $mysqli->prepare("insert into branch (branch, b_address, b_email, b_tel) values (?, '', '', '0000000000')");
         $branchq->bind_param("s", $brch);
 

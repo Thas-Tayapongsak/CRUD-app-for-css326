@@ -6,7 +6,7 @@ session_start();
     if(isset($_POST['admin-submit'])){ 
 
         $pswd_in = $_POST['password'];
-        $unam = $_POST['username'];
+        $unam = $_SESSION['username'];
 
         $loginq = $mysqli->prepare("select passwd, managerflag from staff where uname = ?;");
         $loginq->bind_param("s", $unam);
@@ -23,7 +23,6 @@ session_start();
                     $pswd_comp = $row['passwd'];
                     $mflag = $row['managerflag'];
                     if (password_verify($pswd_in,$pswd_comp) AND $mflag == "1") {
-                        $_SESSION['username'] = $unam;
                         header('Refresh: 3; URL = manager.php');
                         echo "<p>Logged in as '".$unam."'.";
                         echo "<br>You will be redirected. Or click <a href=\"manager.php\">here</a>.</p>"; #redirect to home page

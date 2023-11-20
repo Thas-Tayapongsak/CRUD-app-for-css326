@@ -26,11 +26,12 @@
 
                     #update staff
                     if(isset($_POST['prof-submit'])) {
-                        $updateq = $mysqli->prepare("update staff set fname = ?, lname = ? where uname = ?;");
-                        $updateq->bind_param("sss", $fnam, $lnam, $unam);
+                        $updateq = $mysqli->prepare("update staff set fname = ?, lname = ?, dateofbirth = ? where uname = ?;");
+                        $updateq->bind_param("ssss", $fnam, $lnam, $dob, $unam);
 
                         $fnam = $_POST['firstname'];
                         $lnam = $_POST['lastname'];
+                        $dob = $_POST['dateofbirth'];
 
                         if (!$updateq->execute()) {
                             header('Refresh: 3; URL = profile.php');
