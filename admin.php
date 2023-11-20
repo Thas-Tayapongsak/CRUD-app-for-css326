@@ -87,7 +87,7 @@ session_start();
         </main>
         <footer>
             <address>
-                Lorem ipsum<br>dolor sit amet,<br>consectetur<br>adipiscing elit.
+                131 หมู่ 5 ถ. ติวานนท์<br>ตำบลบางกะดี อำเภอเมืองปทุมธานี<br>ปทุมธานี 12000
             </address>
         </footer>
     </body>
