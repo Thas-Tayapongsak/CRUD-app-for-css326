@@ -67,7 +67,7 @@ session_start();
         <main>
             <div class="init-page">
                 <div class="init-form">
-                    <h1>LOG IN</h1>
+                    <h1>MANAGER LOG IN</h1>
                     <form action="admin.php" method="post">
                         <div class="init-form-input">
                             <label for="username">Username </label>

@@ -79,7 +79,7 @@
 
                     <h1>SHIPMENT</h1>
                     <div class="table-container">
-                        <!-- display inventory of this branch -->
+                        <!-- display shipment of this branch -->
                         <table>
                             <tr>
                                 <td>ID</td>

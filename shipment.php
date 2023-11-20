@@ -95,34 +95,42 @@
                         <input id="inv-submit" type="submit" name="inv-submit" value="SEND"/>
                     </form>
 
-                    <h1>INVENTORY</h1>
+                    <h1>LIST</h1>
                     <div class="table-container">
                         <!-- display all the inventory in this branch -->
                         <?php
-                            $invq = $mysqli->prepare("select lot_id, i_name, i_type from inventory where branch = ?;");
-                            $invq->bind_param("s", $brch);
+                            #select shipment
+                            $shipq = $mysqli->prepare("select ship_id, uname, branch, lot_id, ware_id, ship_mthd from shipment where branch = ?");
+                            $shipq->bind_param("s", $brch);
 
-                            if (!$invq->execute()) {
-                                echo("Error retrieving inventory information (" . $mysqli -> errno . "): " . $mysqli -> error);
+                            $brch = $_SESSION['branch'];
+
+                            if (!$shipq->execute()) {
+                                echo("Unable to access shipment list (" . $mysqli -> errno . "): " . $mysqli -> error);
                             } else {
-                                $ires = $invq->get_result();
+                                $res = $shipq->get_result();
                             }
 
-                            $invq->close();
+                            $shipq->close();
                         ?>
                         
+                        <!-- display shipment of this branch -->
                         <table>
                             <tr>
                                 <td>ID</td>
-                                <td>Product</td>
-                                <td>Type</td>
+                                <td>Staff</td>
+                                <td>Lot ID</td>
+                                <td>Warehouse ID</td>
+                                <td>Method</td>
                             </tr>
                             <?php
-                                while ($irow = $ires->fetch_assoc()) {
+                                foreach ($res as $row) {
                                     echo "<tr>";
-                                    echo "<td>".$irow['lot_id']."</td>";
-                                    echo "<td>".$irow['i_name']."</td>";
-                                    echo "<td>".$irow['i_type']."</td>";
+                                    echo "<td>".$row['ship_id']."</td>";
+                                    echo "<td>".$row['uname']."</td>";
+                                    echo "<td>".$row['lot_id']."</td>";
+                                    echo "<td>".$row['ware_id']."</td>";
+                                    echo "<td>".$row['ship_mthd']."</td>";
                                     echo "</tr>";
                                 }
                             ?>
